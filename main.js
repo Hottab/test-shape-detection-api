@@ -21,7 +21,7 @@ async function runShapeDetectionApiDemo() {
     video.onloadedmetadata = () => {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
-        alert (''video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight});
+        alert ('video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight});
     };
 
     let renderLocked = false;
