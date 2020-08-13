@@ -22,9 +22,9 @@ async function runShapeDetectionApiDemo() {
     // video.height = 150px;
     
     video.onloadedmetadata = () => {
-       canvas.width =  video.videoWidth/2;
-       canvas.height = video.videoHeight/2;
-        alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
+       canvas.width =  video.videoWidth/4;
+       canvas.height = video.videoHeight/4;
+       // alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
     };
 
     let renderLocked = false;
