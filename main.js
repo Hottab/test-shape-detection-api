@@ -18,6 +18,9 @@ async function runShapeDetectionApiDemo() {
     const video = document.createElement('video');
     video.srcObject = mediaStream;
     video.autoplay = true;
+    video.videoWidth = 100;
+    video.videoHeight = 150;
+    
     video.onloadedmetadata = () => {
         canvas.width = 100  // video.videoWidth;
         canvas.height = 150 // video.videoHeight;
