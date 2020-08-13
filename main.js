@@ -22,8 +22,8 @@ async function runShapeDetectionApiDemo() {
     // video.height = 150px;
     
     video.onloadedmetadata = () => {
-       canvas.width =  video.videoWidth % 2;
-       canvas.height = video.videoHeight % 2;
+       canvas.width =  video.videoWidth;
+       canvas.height = video.videoHeight;
        // alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
     };
 
@@ -46,7 +46,7 @@ async function runShapeDetectionApiDemo() {
 
                 context.strokeStyle = '#ffeb3b';
                 context.fillStyle = '#ffeb3b';
-                context.font = '16px Mononoki';
+                context.font = '22px Mononoki';
                 context.lineWidth = 5;
 
                 detectedBarcodes.forEach((detectedBarcode) => {
