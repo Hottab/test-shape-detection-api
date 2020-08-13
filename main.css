@@ -1,4 +1,9 @@
+:root {
+    margin: 0;
+    padding: 0;
+}
+
 canvas {
-    border: 4px solid;
-    width: 100vw;
+    border: 4px solid hsl(217, 78%, 58%);
+    max-width: 100vw;
 }
