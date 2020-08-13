@@ -22,8 +22,8 @@ async function runShapeDetectionApiDemo() {
     // video.height = 150px;
     
     video.onloadedmetadata = () => {
-        //canvas.width = 100; // video.videoWidth;
-        //canvas.height = 150; // video.videoHeight;
+        canvas.width = 100; // video.videoWidth;
+       canvas.height = 150; // video.videoHeight;
         alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
     };
 
