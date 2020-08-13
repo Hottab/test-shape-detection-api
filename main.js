@@ -65,7 +65,8 @@ async function runShapeDetectionApiDemo() {
                         context.rect(left, top, width, height);
                     }
                     context.stroke();
-                    context.fillText(detectedBarcode.rawValue, left, top +  16);
+                    //context.fillText(detectedBarcode.rawValue, left, top + height + 16);
+                    context.fillText(detectedBarcode.rawValue, left, 16);
                 });
 
                 renderLocked = false;
