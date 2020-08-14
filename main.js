@@ -50,10 +50,6 @@ async function runShapeDetectionApiDemo() {
     // const faceDetector = new FaceDetector({ fastMode: true });
     // const textDetector = new TextDetector();
     
-    context.fillRect(0, 0, 50, 50);
-    context.moveTo(120, 0);
-    context.lineTo(120,320);
-
     const barcodeDetector = new BarcodeDetector();
 
     function render() {
@@ -72,8 +68,6 @@ async function runShapeDetectionApiDemo() {
                 context.fillStyle = '#ffeb3b';
                 context.font = '22px Arial';
                 context.lineWidth = 5;
-
-                
 
                 detectedBarcodes.forEach((detectedBarcode) => {
                     const { top, left, width, height } = detectedBarcode.boundingBox;
@@ -95,6 +89,12 @@ async function runShapeDetectionApiDemo() {
                     context.fillText(detectedBarcode.rawValue, left, top + height + 50);
                     
                     context.fillText(detectedBarcode.rawValue, 20, 20);
+                    
+                    ctx.beginPath();
+                    context.moveTo(120, 0);
+                    context.lineTo(120,320);
+                    ctx.stroke();
+
                 });
 
                 renderLocked = false;
