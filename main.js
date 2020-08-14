@@ -14,10 +14,9 @@ function isShapeDetectionApiSupported() {
 async function runShapeDetectionApiDemo() {
     const constraints = {
         video: {
-            width: 320,
-            height: 320,
             facingMode: 'environment'
         }// use rear camera only
+
     };  
     const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
 
@@ -26,8 +25,8 @@ async function runShapeDetectionApiDemo() {
     video.autoplay = true;
     
     video.onloadedmetadata = () => {
-       canvas.width =  video.videoWidth ;
-       canvas.height = video.videoHeight;
+       canvas.width =  320 // video.videoWidth ;
+       canvas.height = 320 // video.videoHeight;
        // alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
     };
 
