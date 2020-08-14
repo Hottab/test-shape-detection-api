@@ -49,6 +49,9 @@ async function runShapeDetectionApiDemo() {
     let renderLocked = false;
     // const faceDetector = new FaceDetector({ fastMode: true });
     // const textDetector = new TextDetector();
+    
+    context.fillRect(0, 0, 100,100);
+    
     const barcodeDetector = new BarcodeDetector();
 
     function render() {
@@ -60,7 +63,7 @@ async function runShapeDetectionApiDemo() {
                // textDetector.detect(video).catch((error) => console.error(error)),
                 barcodeDetector.detect(video).catch((error) => console.log(error))
             ]).then(([detectedBarcodes = []]) => {
-                context.clearRect(0, 0, canvas.width, canvas.height);
+               // context.clearRect(0, 0, canvas.width, canvas.height);
                 context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
                 context.strokeStyle = '#ffeb3b';
@@ -68,7 +71,7 @@ async function runShapeDetectionApiDemo() {
                 context.font = '22px Arial';
                 context.lineWidth = 5;
 
-                context.fillRect(0, 0, 100,100);
+                
 
                 detectedBarcodes.forEach((detectedBarcode) => {
                     const { top, left, width, height } = detectedBarcode.boundingBox;
@@ -87,7 +90,7 @@ async function runShapeDetectionApiDemo() {
                     }
                     context.stroke();
                     // context.fillText(detectedBarcode.rawValue, left, top + height + 16);
-                    context.fillText(detectedBarcode.rawValue, left, top + height + 16);
+                    context.fillText(detectedBarcode.rawValue, left, top + height + 50);
                     
                     context.fillText(detectedBarcode.rawValue, 20, 20);
                 });
