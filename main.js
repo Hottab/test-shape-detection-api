@@ -6,6 +6,7 @@
 сделать на канве зеленую линию прицела посередине
 сделать на канве затенение по краям
 в канве слева внизу посередине выводить результат распознавания 
+сделать канву адаптивной
 перехватить и выводить в алерт ошибки камеры ()
 https://developer.mozilla.org/ru/docs/Web/API/MediaDevices/getUserMedia 
 */
@@ -41,7 +42,7 @@ async function runShapeDetectionApiDemo() {
     
     video.onloadedmetadata = () => {
        canvas.width =  320 // video.videoWidth ;
-       canvas.height = 320 // video.videoHeight;
+       canvas.height = 260 // video.videoHeight;
        // alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
     };
 
