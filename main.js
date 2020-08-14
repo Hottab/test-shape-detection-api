@@ -50,8 +50,10 @@ async function runShapeDetectionApiDemo() {
     // const faceDetector = new FaceDetector({ fastMode: true });
     // const textDetector = new TextDetector();
     
-    context.fillRect(0, 0, 100,100);
-    
+    context.fillRect(0, 0, 50, 50);
+    context.moveTo(120, 0);
+    context.lineTo(120,320);
+
     const barcodeDetector = new BarcodeDetector();
 
     function render() {
