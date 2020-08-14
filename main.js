@@ -12,7 +12,13 @@ function isShapeDetectionApiSupported() {
 }
 
 async function runShapeDetectionApiDemo() {
-    const constraints = { video: { facingMode: 'environment' } };  // use rear camera
+    const constraints = {
+        video: {
+            width: 320,
+            height: 320,
+            facingMode: 'environment'
+        }// use rear camera only
+    };  
     const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
 
     const video = document.createElement('video');
@@ -20,8 +26,8 @@ async function runShapeDetectionApiDemo() {
     video.autoplay = true;
     
     video.onloadedmetadata = () => {
-       canvas.width =  video.videoWidth /2;
-       canvas.height = video.videoHeight /2;
+       canvas.width =  video.videoWidth ;
+       canvas.height = video.videoHeight;
        // alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
     };
 
