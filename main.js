@@ -18,12 +18,10 @@ async function runShapeDetectionApiDemo() {
     const video = document.createElement('video');
     video.srcObject = mediaStream;
     video.autoplay = true;
-    // video.width = 100px;
-    // video.height = 150px;
     
     video.onloadedmetadata = () => {
-       canvas.width =  video.videoWidth % 2;
-       canvas.height = video.videoHeight % 2;
+       canvas.width =  video.videoWidth;
+       canvas.height = video.videoHeight;
        // alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
     };
 
@@ -65,8 +63,8 @@ async function runShapeDetectionApiDemo() {
                         context.rect(left, top, width, height);
                     }
                     context.stroke();
-                    //context.fillText(detectedBarcode.rawValue, left, top + height + 16);
-                    context.fillText(detectedBarcode.rawValue, 0, 0);
+                    // context.fillText(detectedBarcode.rawValue, left, top + height + 16);
+                    context.fillText(detectedBarcode.rawValue, left, top + height + 16);
                 });
 
                 renderLocked = false;
