@@ -1,3 +1,16 @@
+// чтение штрихкода с камеры устройства
+/* 
+выводить результаты распознавания в label
+при срабатывании распознавания останавливать камеру (если шк валидный)
+переделать алгоритм распознавания (заменить массив результатов на одно значение)
+сделать на канве зеленую линию прицела посередине
+сделать на канве затенение по краям
+в канве слева внизу посередине выводить результат распознавания 
+перехватить и выводить в алерт ошибки камеры ()
+https://developer.mozilla.org/ru/docs/Web/API/MediaDevices/getUserMedia 
+*/
+
+
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 
@@ -14,6 +27,8 @@ function isShapeDetectionApiSupported() {
 async function runShapeDetectionApiDemo() {
     const constraints = {
         video: {
+            width: { min: 320 },
+            height: { min: 320 },
             facingMode: 'environment'
         }// use rear camera only
 
