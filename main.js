@@ -90,10 +90,10 @@ async function runShapeDetectionApiDemo() {
                     
                     context.fillText(detectedBarcode.rawValue, 20, 20);
                     
-                    ctx.beginPath();
+                    context.beginPath();
                     context.moveTo(120, 0);
                     context.lineTo(120,320);
-                    ctx.stroke();
+                    context.stroke();
 
                 });
 
