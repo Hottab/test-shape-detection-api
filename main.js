@@ -1,11 +1,10 @@
 // чтение штрихкода с камеры устройства
 /* 
+сделать на канве затенение по краям
+сделать на канве линию прицела посередине серого цвета. при распознавании она становится зеленой
+переделать алгоритм распознавания (заменить массив результатов на одно значение)
 выводить результаты распознавания в label
 при срабатывании распознавания останавливать камеру (если шк валидный)
-переделать алгоритм распознавания (заменить массив результатов на одно значение)
-сделать на канве зеленую линию прицела посередине
-сделать на канве затенение по краям
-в канве слева внизу посередине выводить результат распознавания 
 сделать канву адаптивной
 перехватить и выводить в алерт ошибки камеры ()
 https://developer.mozilla.org/ru/docs/Web/API/MediaDevices/getUserMedia 
@@ -27,13 +26,15 @@ function isShapeDetectionApiSupported() {
 
 async function runShapeDetectionApiDemo() {
     const constraints = {
+        audio: false,
         video: {
-            width: { min: 320 },
-            height: { min: 320 },
-            facingMode: 'environment'
+            width: { min: 320, ideal: 320, max: 320 },
+            height: { min: 320, ideal: 320, max: 320 },
+            facingMode: { exact: "environment" },
+            frameRate: { ideal: 10, max: 15 },
         }// use rear camera only
-
     };  
+
     const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
 
     const video = document.createElement('video');
@@ -41,8 +42,8 @@ async function runShapeDetectionApiDemo() {
     video.autoplay = true;
     
     video.onloadedmetadata = () => {
-       canvas.width =  320 // video.videoWidth ;
-       canvas.height = 260 // video.videoHeight;
+       canvas.width =  video.videoWidth; // video.videoWidth ;
+       canvas.height = video.videoHeight; // video.videoHeight;
        // alert (`video.videoWidth: ${video.videoWidth},  video.videoHeight: ${video.videoHeight}`);
     };
 
@@ -64,11 +65,12 @@ async function runShapeDetectionApiDemo() {
                // context.clearRect(0, 0, canvas.width, canvas.height);
                 context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
-                context.strokeStyle = '#ffeb3b';
-                context.fillStyle = '#ffeb3b';
+                context.strokeStyle = '#e6df0b';
+                context.fillStyle = '#e6df0b';
+                context.lineWidth = 2;
                 context.font = '22px Arial';
-                context.lineWidth = 5;
 
+                //  TODO: выбрать первый баркод detectedBarcodes[0]
                 detectedBarcodes.forEach((detectedBarcode) => {
                     const { top, left, width, height } = detectedBarcode.boundingBox;
                     const cornerPoints = detectedBarcode.cornerPoints;
@@ -85,17 +87,17 @@ async function runShapeDetectionApiDemo() {
                         context.rect(left, top, width, height);
                     }
                     context.stroke();
-                    // context.fillText(detectedBarcode.rawValue, left, top + height + 16);
-                    context.fillText(detectedBarcode.rawValue, left, top + height + 50);
+                    // context.fillText(detectedBarcode.rawValue, left, top + height + 50);
                     
                     context.fillText(detectedBarcode.rawValue, 20, 20);
-                    
-                    context.beginPath();
-                    context.moveTo(120, 0);
-                    context.lineTo(120,320);
-                    context.stroke();
-
                 });
+                
+                context.strokeStyle = '#b0b8b2';
+                context.lineWidth = 2;
+                context.beginPath();
+                context.moveTo(canvas.width * 0.2, canvas.height * 0.5);
+                context.lineTo(canvas.width * 0.8, canvas.height * 0.5);
+                context.stroke(); 
 
                 renderLocked = false;
             });
@@ -111,6 +113,7 @@ async function runShapeDetectionApiDemo() {
 };
 
 function displayFallbackMessage() {
+    alert('Error: Shape Detection Api not supported!');
     document.querySelector('.fallback-message').classList.remove('hidden');
     document.querySelector('canvas').classList.add('hidden');
     document.querySelector('.links').classList.add('hidden');
