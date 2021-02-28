@@ -92,12 +92,24 @@ async function runShapeDetectionApiDemo() {
                     context.fillText(detectedBarcode.rawValue, 20, 20);
                 });
                 
+                // target sight
                 context.strokeStyle = '#b0b8b2';
                 context.lineWidth = 2;
                 context.beginPath();
                 context.moveTo(canvas.width * 0.2, canvas.height * 0.5);
                 context.lineTo(canvas.width * 0.8, canvas.height * 0.5);
                 context.stroke(); 
+
+                // context.globalAlpha = 0.1;
+                // context.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                // context.fill();
+                // context.fillRect(0, 0, canvas.width, canvas.height);
+                // https://msiter.ru/references/html5-canvas/globalcompositeoperation
+                // context.clearRect(canvas.width * 0.5, canvas.height * 0.5, 60, 60);
+                // context.globalCompositeOperation = "source-out";
+                // context.fillRect(canvas.width * 0.5, canvas.height * 0.5, 60, 60);
+                // слои снизу вверх: видео, серая полупрозрачная заливка канвы, прозрачный выразающий прямоугольник, прицел
+
 
                 renderLocked = false;
             });
